@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 const {userSchema} = require('../utils/zodValidator');
@@ -29,10 +29,11 @@ const signUp = async (req,res) => {
                 }
             )
         };
+        const hashedPassword = await bcrypt.hashSync(password,10);
         const user = await User.create({
             username,
             email,
-            password: bcrypt.hashSync(password,10),
+            password: hashedPassword,
             role
         });
 
@@ -46,9 +47,11 @@ const signUp = async (req,res) => {
         );
     }
     catch(err){
+        console.error(err);
         return res.status(500).json(
             {
-                message: 'Internal Server Error'
+                
+                message: 'Internal Server Error1'
             }
         );
     }

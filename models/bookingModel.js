@@ -19,12 +19,21 @@ const Booking = sequelize.define('Booking',{
         type: DataTypes.ENUM('booked','cancelled'),
         allowNull: false,
         defaultValue: 'booked'
+    },
+
+    userId:{
+        type: DataTypes.UUID,
+        allowNull: false
+    },
+    trainId:{
+        type: DataTypes.UUID,
+        allowNull: false
     }
 })
 
-User.hasMany(Booking);
-Booking.belongsTo(User);
-Train.hasMany(Booking);
-Booking.belongsTo(Train);
+User.hasMany(Booking,{foreignKey: 'userId'});
+Booking.belongsTo(User,{foreignKey: 'userId'});
+Train.hasMany(Booking,{foreignKey: 'trainId'});
+Booking.belongsTo(Train,{foreignKey: 'trainId'});
 
 module.exports = Booking;

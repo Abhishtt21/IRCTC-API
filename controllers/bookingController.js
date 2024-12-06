@@ -101,8 +101,8 @@ const bookSeat = async (req,res) => {
         }
 
         const booking = await Booking.create({
-            userId,
-            trainId,
+            userId: user.id,
+            trainId: train.id,
             seatNo: train.totalSeats - train.availableSeats +1,
         },
         {
@@ -121,6 +121,7 @@ const bookSeat = async (req,res) => {
     }
     catch(err){
         await t.rollback();
+        console.error(err);
         return res.status(500).json(
             {
                 message: 'Internal Server Error'

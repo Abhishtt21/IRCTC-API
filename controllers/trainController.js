@@ -11,15 +11,16 @@ const createTrain = async (req,res) => {
         if(!parsed.success){
             return res.status(400).json(
                 {
+                    err:"error",
                     message: parsed.error.errors[0].message
                 }
             );
         }
-        const {trainName,source,destination, totalSeats} = parsed.data;
+        const {train_name,source,destination, totalSeats} = parsed.data;
 
         const existingTrain = await Train.findOne({
             where:{
-                trainName
+                train_name
             }
         });
 
@@ -32,7 +33,7 @@ const createTrain = async (req,res) => {
         };
 
         const train = await Train.create({
-            trainName,
+            train_name,
             source,
             destination,
             totalSeats
@@ -47,6 +48,7 @@ const createTrain = async (req,res) => {
 
     }
     catch(err){
+        console.error(err);
         return res.status(500).json(
             {
                 message: 'Internal Server Error'
