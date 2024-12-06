@@ -3,9 +3,9 @@ const sequelize = require('../config/db');
 
 const Train = sequelize.define('Train',{
     id:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement: true
+        defaultValue: DataTypes.UUIDV4
     },
     train_name:{
         type: DataTypes.STRING,
@@ -30,3 +30,5 @@ const Train = sequelize.define('Train',{
         allowNull: false
     },
 })
+
+module.exports = Train;

@@ -3,9 +3,9 @@ const sequelize = require('../config/db');
 
 const User = sequelize.define('User',{
     id:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement: true
+        defaultValue: DataTypes.UUIDV4
     },
     username:{
         type: DataTypes.STRING,
@@ -30,3 +30,5 @@ const User = sequelize.define('User',{
         defaultValue: 'user'
     }
 })
+
+module.exports = User;
