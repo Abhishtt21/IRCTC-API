@@ -27,8 +27,24 @@ const Train = sequelize.define('Train',{
     },
     availableSeats:{
         type: DataTypes.INTEGER,
-        allowNull: false
     },
+    version: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+    }
+    
+},{
+    version: true
+})
+
+Train.beforeCreate((train,options) => {
+    train.source = train.source.toLowerCase();
+    train.destination = train.destination.toLowerCase();
+    train.train_name = train.train_name.toLowerCase();
+    if(train.availableSeats == null){
+        train.availableSeats = train.totalSeats;
+    }
 })
 
 module.exports = Train;

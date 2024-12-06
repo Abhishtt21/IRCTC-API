@@ -8,11 +8,10 @@ const userSchema = zod.object({
 })
 
 const trainSchema = zod.object({
-    train_name: zod.string().min(5).max(20),
+    trainName: zod.string().min(5).max(20),
     source: zod.string().min(5).max(20),
     destination: zod.string().min(5).max(20),
     totalSeats: zod.number().int(),
-    availableSeats: zod.number().int()
 })
 
 module.exports = {userSchema, trainSchema};
