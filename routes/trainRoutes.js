@@ -5,13 +5,13 @@ const {bookSeat, checkSeatAvailability, getAllBookings,getBookingDetails} = requ
 const {authenticateUser} = require('../middlewares/authMiddleware');
 const adminMiddleware = require('../middlewares/adminMiddleware');
 
-router.post('/create',authenticateUser,adminMiddleware,createTrain);
-router.put('/update/:trainId',authenticateUser,adminMiddleware,updateTrainSeats);
-router.get('/trains',authenticateUser,getTrains);
+router.post('/train/create',authenticateUser,adminMiddleware,createTrain);
+router.put('/train/update/:trainId',authenticateUser,adminMiddleware,updateTrainSeats);
+router.get('/train/trains',authenticateUser,getTrains);
 
-router.post('/book',authenticateUser,bookSeat);
-router.get('/bookings',authenticateUser,getAllBookings);
-router.get('/booking',authenticateUser,getBookingDetails);
-router.get('/check',authenticateUser,checkSeatAvailability);
+router.post('/train/book',authenticateUser,bookSeat);
+router.get('/train/bookings',authenticateUser,getAllBookings);
+router.get('/train/booking',authenticateUser,getBookingDetails);
+router.get('/train/check',authenticateUser,checkSeatAvailability);
 
 module.exports = router;

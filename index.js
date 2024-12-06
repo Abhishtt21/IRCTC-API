@@ -9,8 +9,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use('/auth',authRoutes);
-app.use('/train',trainRoutes);
+app.use('/api/v1',authRoutes);
+app.use('/api/v1',trainRoutes);
 
 const PORT = process.env.PORT || 3000;
 sequelize.sync({force:true}).then(() => {
