@@ -26,3 +26,5 @@ User.hasMany(Booking);
 Booking.belongsTo(User);
 Train.hasMany(Booking);
 Booking.belongsTo(Train);
+
+module.exports = Booking;
